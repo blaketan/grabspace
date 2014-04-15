@@ -1,0 +1,25 @@
+<title> Grabspace </title>
+  <%- unless @lat_lng %>
+    <script>
+      function getGeoLocation() {
+        navigator.geolocation.getCurrentPosition(setGeoCookie);
+      }
+
+      function setGeoCookie(position) {
+        var cookie_val = position.coords.latitude + "|" + position.coords.longitude;
+        document.cookie = "lat_lng=" + escape(cookie_val);
+        location.reload();
+      }
+      getGeoLocation();
+    </script>
+  <%- end %>
+
+<% @buildings.each do |building| %>
+    
+      <%= building.id %>
+      <%= link_to building.name, building_path(building) %>
+      <br>
+<% end %>
+
+<%= @lat_lng %>
+<%= Time.now.strftime("%I%M zone %z") %>

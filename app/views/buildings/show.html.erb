@@ -1,0 +1,23 @@
+<Title>Grabspace</title>
+<p>
+  <strong>Building:</strong>
+  <%= @hall.name %>
+</p>
+ 
+<p>
+  <strong>Rooms:</strong><br>
+  <table>
+  <tr>
+  	<td> Room ID</td>
+  	<td> Room No.</td>
+  	<td> Capacity</td>
+  </tr>	
+  <% @hall.rooms.each do |room| %>
+  	<tr>
+  	<td><%= room.id %></td>
+  	<td><%= link_to room.name, building_room_path(@hall,room) %></td>
+  	<td><%= room.capacity %></td>
+  	<td></td>
+  	</tr>
+  <% end %>
+</p>
