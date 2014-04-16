@@ -4,11 +4,12 @@ module BuildingsHelper
 		cur_time = Time.now.strftime("%H%M").to_i
 		available = true
 		next_timing = 2200
-		if rmevents.count == 0
-			available = true
-		elsif cur_time < 700 or cur_time >2200
+
+		if cur_time < 700 or cur_time >2200
 			available = false
 			next_timing = 700
+		elsif rmevents.count == 0
+			available = true
 		else
 			for i in 0..(rmevents.count -1)
 				if cur_time >= rmevents[i][:start_time] and cur_time < rmevents[i][:end_time]
