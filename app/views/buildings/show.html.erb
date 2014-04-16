@@ -18,14 +18,15 @@
   <% @rooms.each do |room| %>
   <div class="panel panel-default">
     <div class="panel-body">
- 	<%= room.id %>
+    <center>
   	<%= link_to room.name, building_room_path(@hall,room) %>
 	<%= room.capacity %> seats
   	<% if rm_free(room.id)[0] == true %>
   		Room is available until <%= rm_free(room.id)[1] %>
   	<% else %>
-  		closed
+  		Room closed until <%= rm_free(room.id)[1] %>
   	<% end %>
+  	</center>
   	</div>
   </div>
   <% end %>
