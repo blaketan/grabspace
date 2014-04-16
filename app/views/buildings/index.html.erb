@@ -18,8 +18,9 @@
     
       <%= building.id %>
       <%= link_to building.name, building_path(building) %>
+      <%= availcount(building.id) %>
       <br>
 <% end %>
 
 <%= @lat_lng %>
-<%= Time.now.strftime("%I%M zone %z") %>
+<%= Time.now.strftime("%H%M zone %z") %>

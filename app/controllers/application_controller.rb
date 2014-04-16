@@ -2,11 +2,12 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  	def rm_avail(rmevents)
+  	def rm_avail(room)
+  		rmevents = Event.where(room_id: room).all
 		cur_time = Time.now.strftime("%I%M").to_i
 		available = true
 		next_timing = 2200
-		if cur_time < 700 or cur_time >2200 or rmevents.count == 0
+		if cur_time < 700 or cur_time >2200
 			available = false
 			next_timing = 700
 		else

@@ -12,12 +12,12 @@
   	<td> Room No.</td>
   	<td> Capacity</td>
   </tr>	
-  <% @hall.rooms.each do |room| %>
+  <% @rooms.each do |room| %>
   	<tr>
   	<td><%= room.id %></td>
   	<td><%= link_to room.name, building_room_path(@hall,room) %></td>
   	<td><%= room.capacity %></td>
-  	<td></td>
+  	<td><%= rm_free(room) %></td>
   	</tr>
   <% end %>
 </p>

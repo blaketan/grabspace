@@ -1,5 +1,5 @@
 class BuildingsController < ApplicationController
-
+  helper :all
   def index
     @lat_lng = cookies[:lat_lng] ? cookies[:lat_lng].split("|") : false
     if @lat_lng
@@ -11,5 +11,6 @@ class BuildingsController < ApplicationController
 
   def show
     @hall = Building.find(params[:id])
+    @rooms = @hall.rooms
   end
 end
