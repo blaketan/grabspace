@@ -18,18 +18,21 @@
       getGeoLocation();
     </script>
     <% else %>
-      <p>Buildings closest to you</p>
+      <p>Displaying buildings closest to you</p>
   <%- end %>
 
 
 <% @buildings.each do |building| %>
+  <%= link_to building_path(building) do %>
   <div class="panel panel-default">
     <div class="panel-body">
       <%= building.id %>
-      <strong><%= link_to building.name, building_path(building) %></strong>
+      <strong><%= building.name %></strong>
       <span class="badge" id="availability"><%= availcount(building.id) %></span>
+      &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;rooms available
     </div>
   </div>
+  <% end %>
 <% end %>
 
 <%= @lat_lng %>

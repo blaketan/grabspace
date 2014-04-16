@@ -4,6 +4,32 @@
 </div>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&sensor=true">
 </script>
+
+
+ <div class="map-container">
+   <div id="map-canvas"/>
+</div>
+<p align="center">
+  <strong>Building:</strong>
+  <%= @hall.name %>
+</p>
+ 
+
+  <% @rooms.each do |room| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+ 	<%= room.id %>
+  	<%= link_to room.name, building_room_path(@hall,room) %>
+	<%= room.capacity %> seats
+  	<% if rm_free(room.id)[0] == true %>
+  		Room is available until <%= rm_free(room.id)[1] %>
+  	<% else %>
+  		closed
+  	<% end %>
+  	</div>
+  </div>
+  <% end %>
+
 <script type="text/javascript">
       function initialize() {
        
@@ -19,31 +45,6 @@
         map: map,
       });
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
+window.onload = function() {
+    initialize();}
 </script>
-
- <div class="map-container">
-   <div id="map-canvas"/>
-</div>
-<p>
-  <strong>Building:</strong>
-  <%= @hall.name %>
-</p>
- 
-<p>
-  <strong>Rooms:</strong><br>
-  <table>
-  <tr>
-  	<td> Room ID</td>
-  	<td> Room No.</td>
-  	<td> Capacity</td>
-  </tr>	
-  <% @rooms.each do |room| %>
-  	<tr>
-  	<td><%= room.id %></td>
-  	<td><%= link_to room.name, building_room_path(@hall,room) %></td>
-  	<td><%= room.capacity %></td>
-  	<td><%= rm_free(room.id) %></td>
-  	</tr>
-  <% end %>
-</p>
