@@ -1,4 +1,30 @@
-<Title>Grabspace</title>
+<title> Grabspace </title>
+<div id="topnav">
+<p id="navtext">Grabspace</p>
+</div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&sensor=true">
+</script>
+<script type="text/javascript">
+      function initialize() {
+       
+      var myLatlng = new google.maps.LatLng(<%= @hall.lat %>,<%= @hall.lng %>);
+      var mapOptions = {
+      zoom: 17,
+      center: myLatlng
+      }
+      var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+      });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+ <div class="map-container">
+   <div id="map-canvas"/>
+</div>
 <p>
   <strong>Building:</strong>
   <%= @hall.name %>
@@ -17,7 +43,7 @@
   	<td><%= room.id %></td>
   	<td><%= link_to room.name, building_room_path(@hall,room) %></td>
   	<td><%= room.capacity %></td>
-  	<td><%= rm_free(room) %></td>
+  	<td><%= rm_free(room.id) %></td>
   	</tr>
   <% end %>
 </p>

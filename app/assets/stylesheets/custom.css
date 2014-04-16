@@ -1,0 +1,42 @@
+#topnav{
+	background-color:#A30E07;
+	box-shadow: 0px 3px 4px #F5F507;
+}
+
+#navtext{
+	text-align:center;
+	color:#F5F507;
+	font-weight: bold;
+	padding: 8px;
+	font-size: 20px;
+}
+#map-canvas {
+	 height: 100% 
+}
+
+#dibs{
+	background-color:#8AFF75;
+}
+
+#distance{
+	position: relative;
+	margin-left: 30px;
+	color: grey;
+}
+
+#availability{
+	position: relative;
+	left: 30px;
+}
+
+#results{
+	position: relative;
+	z-index: 1;
+}
+
+.map-container{
+	z-index: 1;
+	positon:relative;
+	height: 300px;
+}
+

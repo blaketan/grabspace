@@ -1,5 +1,10 @@
 <title> Grabspace </title>
+<div id="topnav">
+<p id="navtext">Grabspace</p>
+</div>
+
   <%- unless @lat_lng %>
+    <p>Geolocation not set, displaying all results</p>
     <script>
       function getGeoLocation() {
         navigator.geolocation.getCurrentPosition(setGeoCookie);
@@ -12,15 +17,20 @@
       }
       getGeoLocation();
     </script>
+    <% else %>
+      <p>Buildings closest to you</p>
   <%- end %>
 
+
 <% @buildings.each do |building| %>
-    
+  <div class="panel panel-default">
+    <div class="panel-body">
       <%= building.id %>
-      <%= link_to building.name, building_path(building) %>
-      <%= availcount(building.id) %>
-      <br>
+      <strong><%= link_to building.name, building_path(building) %></strong>
+      <span class="badge" id="availability"><%= availcount(building.id) %></span>
+    </div>
+  </div>
 <% end %>
 
 <%= @lat_lng %>
-<%= Time.now.strftime("%H%M zone %z") %>
+<%= Time.now.strftime("%%M zone %z") %>
