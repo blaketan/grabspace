@@ -1,4 +1,5 @@
 <title> Grabspace </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <div id="topnav">
 <p id="navtext">Grabspace</p>
 </div>
@@ -30,6 +31,8 @@
       <strong><%= building.name %></strong>
       <span class="badge" id="availability"><%= availcount(building.id) %></span>
       &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;rooms available
+      <%= compass(building, @lat_lng)%>
+       <%= building.distance_from(@lat_lng).round(2) %> mi
     </div>
   </div>
   <% end %>

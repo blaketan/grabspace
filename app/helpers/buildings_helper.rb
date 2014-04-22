@@ -43,4 +43,7 @@ module BuildingsHelper
 		return count
 	end
 
+  def compass(building, lat_lng)
+    Geocoder::Calculations.compass_point(building.bearing_from(lat_lng)) 
+  end
 end
