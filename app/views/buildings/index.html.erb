@@ -32,7 +32,7 @@
       <span class="badge" id="availability"><%= availcount(building.id) %></span>
       &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;rooms available
       <%= compass(building, @lat_lng)%>
-       <%= building.distance_from(@lat_lng).round(2) %> mi
+   
     </div>
   </div>
   <% end %>
