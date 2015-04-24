@@ -51,6 +51,4 @@ gem 'rails_12factor', group: :production
 
 gem 'mechanize'
 
-gem 'clockwork'
-
 ruby "2.1.5"
