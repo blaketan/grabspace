@@ -8,17 +8,17 @@ module BuildingsHelper
 		if t.hour < 7 
 			available = false
 			next_timing = Time.new(t.year,t.month,t.day,7)
-		elsif t.hour >22
-			next_timing = Time.new(t.year,t.month,t.day,7)+(60*60*24)	
+		elsif t.hour >21
+			available = false
+			next_timing = Time.new(t.year,t.month,t.day,7)	
 		else
 			for i in 0..(rmevents.count - 1)
-				puts "Event id: #{rmevents[i].id} starts: #{rmevents[i].start_time.to_time + (60*60*5)}"
-				if t >= (rmevents[i][:start_time].to_time+(60*60*5)) and t < (rmevents[i][:end_time].to_time+(60*60*5))
+				if t >= (rmevents[i][:start_time].to_time) and t < (rmevents[i][:end_time].to_time)
 					available = false
-					next_timing = (rmevents[i][:end_time].to_time + (60*60*5))
+					next_timing = (rmevents[i][:end_time].to_time)
 					break
-				elsif t < (rmevents[i][:start_time].to_time+(60*60*5)) and t > (rmevents[i-1][:end_time].to_time+(60*60*5))
-					next_timing = (rmevents[i][:start_time].to_time + (60*60*5))
+				elsif t < (rmevents[i][:start_time].to_time) and t > (rmevents[i-1][:end_time].to_time)
+					next_timing = (rmevents[i][:start_time].to_time)
 					break
 				end
 			end
@@ -38,7 +38,6 @@ module BuildingsHelper
 		rms.each do |x|
 			if rm_free(x.id)[0] == true
 				count += 1
-				puts count
 			end
 		end
 		return count
