@@ -34,4 +34,6 @@ class ApplicationController < ActionController::Base
 		when true
 			return [true, next_timing]
 		end
+
+	end
 end
