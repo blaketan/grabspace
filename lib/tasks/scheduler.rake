@@ -1,4 +1,4 @@
-require File.expand_path('../config/application', __FILE__)
+require File.expand_path('/config/application', __FILE__)
 require 'mechanize'
 require 'open-uri'
 require 'json'
