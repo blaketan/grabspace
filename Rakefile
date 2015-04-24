@@ -42,14 +42,16 @@ namespace :astra do
     response_body = agent.get("#{astra_root}~api/calendar/calendarList", params).body
 
     room_events = JSON.parse(response_body)
-    fname = "events.json"
+    fname = "events" + today + ".json"
     target = open('db/json/' + fname, 'w')
     target.puts response_body
     target.close
   end
 
   task :update => :environment do
-    rm_events = JSON.parse(open("db/json/events.json").read)
+    today = Time.now.strftime("%Y-%m-%d")
+    fname = "events" + today + ".json"
+    rm_events = JSON.parse(open("db/json/" + fname).read)
     rm_events["data"].each do |event|
         rm= Room.find_by building_id: event[1], name: event[2]
         if rm==nil
