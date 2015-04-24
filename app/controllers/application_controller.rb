@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 			available = false
 			next_timing = Time.new(t.year,t.month,t.day,7)
 		elsif t.hour >22
-			next_timing = Time.new(t.year,t.month,t.day,7)+(60*60*24)	
+			next_timing = Time.new(t.year,t.month,t.day,7)
 		else
 			for i in 0..(rmevents.count-1)
 				if t >= rmevents[i][:start_time].to_time and t < rmevents[i][:end_time].to_time
