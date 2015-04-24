@@ -1,11 +1,11 @@
 #topnav{
-	background-color:#A30E07;
-	box-shadow: 0px 3px 4px #F5F507;
+	background-color:#9e0b0f;
+	box-shadow: 0px 3px 4px  2px #89785c;
 }
 
 #navtext{
 	text-align:center;
-	color:#F5F507;
+	color:#fff6eb;
 	font-weight: bold;
 	padding: 8px;
 	font-size: 20px;

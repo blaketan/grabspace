@@ -11,7 +11,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-buildings = JSON.parse(open("db/json/available_rooms.json").read)
+buildings = JSON.parse(open("db/json/buildings.json").read)
 
 buildings["buildings"].each do |bldg|
 	current_building = bldg["id"]
@@ -21,30 +21,6 @@ buildings["buildings"].each do |bldg|
       "name"=>bldg["name"],
       "lat"=>bldg["lat"].to_f,
       "lng"=>bldg["lng"].to_f,
-    }
-  ])
- 	bldg["rooms"].each do |rm|
-  		Room.create([
-  		  {
-  		    "id"=>rm["id"],
-  		    "name"=>rm["room_number"],
-  		    "capacity"=>rm["max_occupancy"],
-  		    "building_id"=>current_building,
-  		  }
-  		])
-  	end
-
-  
-end
-
-events = JSON.parse(open("db/json/roomevents.json").read)
-
-events.each do |event|
-  Event.create([
-    {
-      "start_time"=>event["start_time"],
-      "end_time"=>event["end_time"],
-      "room_id"=>event["room_id"],
     }
   ])
   

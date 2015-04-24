@@ -27,7 +27,6 @@
   <%= link_to building_path(building) do %>
   <div class="panel panel-default">
     <div class="panel-body">
-      <%= building.id %>
       <strong><%= building.name %></strong>
       <span class="badge" id="availability"><%= availcount(building.id) %></span>
       &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;rooms available

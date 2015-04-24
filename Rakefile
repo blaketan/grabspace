@@ -3,6 +3,9 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'mechanize'
+require 'open-uri'
+require 'json'
+require 'openssl'
 
 Grabspace::Application.load_tasks
 
@@ -14,7 +17,7 @@ namespace :astra do
     ***REMOVED*** = "***REMOVED***"
 
     params = {}
-    params[:fields] = "Location.Room.Building.Name,BuildingCode,RoomNumber,StartDateTime,EndDateTime"
+    params[:fields] = "Location.Room.Building.Name,BuildingCode,RoomNumber,StartDateTime,EndDateTime,Location.MeetingCapacity"
 
     today = Time.now.strftime("%Y-%m-%d")
 
@@ -41,7 +44,30 @@ namespace :astra do
     room_events = JSON.parse(response_body)
     fname = "events.json"
     target = open('db/json/' + fname, 'w')
-    target.puts room_events
+    target.puts response_body
     target.close
+  end
+
+  task :update => :environment do
+    rm_events = JSON.parse(open("db/json/events.json").read)
+    rm_events["data"].each do |event|
+        rm= Room.find_by building_id: event[1], name: event[2]
+        if rm==nil
+            rm=Room.create([
+                {
+                    "name"=>event[2],
+                    "capacity"=>event[5].to_i,
+                    "building_id"=>event[1].to_i
+                }
+            ])
+        end
+        Event.create([
+            {
+                "start_time"=>event[3],
+                "end_time"=>event[4],
+                "room_id"=>event[2],
+            }
+        ])
+    end
   end
 end

@@ -1,23 +1,24 @@
 module BuildingsHelper
 	def rm_free(room)
-  		rmevents = Event.where(room_id: room).all
-		cur_time = Time.now.strftime("%H%M").to_i
+  		t = Time.now
+  		rmevents = Event.where(room_id: room).today.load
+  		puts "Room events today : #{rmevents.count}"
 		available = true
-		next_timing = 2200
-
-		if cur_time < 700 or cur_time >2200
+		next_timing = Time.new(t.year,t.month,t.day,22)
+		if t.hour < 7 
 			available = false
-			next_timing = 700
-		elsif rmevents.count == 0
-			available = true
+			next_timing = Time.new(t.year,t.month,t.day,7)
+		elsif t.hour >22
+			next_timing = Time.new(t.year,t.month,t.day,7)+(60*60*24)	
 		else
-			for i in 0..(rmevents.count -1)
-				if cur_time >= rmevents[i][:start_time] and cur_time < rmevents[i][:end_time]
+			for i in 0..(rmevents.count - 1)
+				puts "Event id: #{rmevents[i].id} starts: #{rmevents[i].start_time.to_time + (60*60*5)}"
+				if t >= (rmevents[i][:start_time].to_time+(60*60*5)) and t < (rmevents[i][:end_time].to_time+(60*60*5))
 					available = false
-					next_timing = rmevents[i][:end_time]
+					next_timing = (rmevents[i][:end_time].to_time + (60*60*5))
 					break
-				elsif cur_time < rmevents[i][:start_time] and cur_time > rmevents[i-1][:end_time]
-					next_timing = rmevents[i][:start_time]
+				elsif t < (rmevents[i][:start_time].to_time+(60*60*5)) and t > (rmevents[i-1][:end_time].to_time+(60*60*5))
+					next_timing = (rmevents[i][:start_time].to_time + (60*60*5))
 					break
 				end
 			end
@@ -29,15 +30,15 @@ module BuildingsHelper
 		when true
 			return [true, next_timing]
 		end
-
 	end
 
 	def availcount(building)
 		count = 0
-		rms = Room.where(building_id: building).all
+		rms = Room.where(building_id: building).load
 		rms.each do |x|
 			if rm_free(x.id)[0] == true
 				count += 1
+				puts count
 			end
 		end
 		return count

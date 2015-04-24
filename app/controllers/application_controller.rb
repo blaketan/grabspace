@@ -3,21 +3,23 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   	def rm_avail(room)
-  		rmevents = Event.where(room_id: room).all
-		cur_time = Time.now.strftime("%I%M").to_i
+  		t = Time.now
+  		rmevents = Event.today.where(room_id: room).load
 		available = true
-		next_timing = 2200
-		if cur_time < 700 or cur_time >2200
+		next_timing = Time.new(t.year,t.month,t.day,22)
+		if t.hour < 7 
 			available = false
-			next_timing = 700
+			next_timing = Time.new(t.year,t.month,t.day,7)
+		elsif t.hour >22
+			next_timing = Time.new(t.year,t.month,t.day,7)+(60*60*24)	
 		else
-			for i in 0..(rmevents.count -1)
-				if cur_time >= rmevents[i][:start_time] and cur_time < rmevents[i][:end_time]
+			for i in 0..(rmevents.count-1)
+				if t >= rmevents[i][:start_time].to_time and t < rmevents[i][:end_time].to_time
 					available = false
-					next_timing = rmevents[i][:end_time]
+					next_timing = rmevents[i][:end_time].to_time
 					break
-				elsif cur_time < rmevents[i][:start_time] and cur_time > rmevents[i-1][:end_time]
-					next_timing = rmevents[i][:start_time]
+				elsif t < rmevents[i][:start_time].to_time and t > rmevents[i-1][:end_time].to_time
+					next_timing = rmevents[i][:start_time].to_time
 					break
 				end
 			end
