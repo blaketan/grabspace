@@ -73,6 +73,7 @@ namespace :astra do
     end
   end
     task :nightly => :environment do 
+    Event.destroy_all("created_at < ?",3.days.ago)
     astra_root = "***REMOVED***"
     username = "***REMOVED***"
     ***REMOVED*** = "***REMOVED***"
