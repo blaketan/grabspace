@@ -45,23 +45,23 @@ namespace :astra do
     room_events = JSON.parse(response_body)
 
     room_events["data"].each do |event|
-        rm= Room.find_by building_id: event[1], name: event[2]
-        if rm==nil
-            rm=Room.create([
-                {
-                    "name"=>event[2],
-                    "capacity"=>event[5].to_i,
-                    "building_id"=>event[1].to_i
-                }
-            ])
-        end
-        Event.create([
-            {
-                "start_time"=>event[3],
-                "end_time"=>event[4],
-                "room_id"=>event[2],
-            }
+      rm= Room.find_by building_id: event[1], name: event[2]
+      if rm==nil
+        rm=Room.create([
+          {
+            "name"=>event[2],
+            "capacity"=>event[5].to_i,
+            "building_id"=>event[1].to_i
+          }
         ])
+      end
+      Event.create([
+        {
+          "start_time"=>event[3],
+          "end_time"=>event[4],
+          "room_id"=>event[2],
+        }
+      ])
     end
   end
 end
