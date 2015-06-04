@@ -46,7 +46,7 @@ namespace :astra do
 
     room_events["data"].each do |event|
       rm= Room.find_by building_id: event[1], name: event[2]
-      if rm==nil
+      if rm.nil?
         rm=Room.create([
           {
             "name"=>event[2],
@@ -59,7 +59,7 @@ namespace :astra do
         {
           "start_time"=>event[3],
           "end_time"=>event[4],
-          "room_id"=>event[2],
+          "room_id"=>rm[:id],
         }
       ])
     end
