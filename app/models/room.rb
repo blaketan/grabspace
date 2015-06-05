@@ -3,7 +3,7 @@ class Room < ActiveRecord::Base
   has_many :events
  
 
-  def self.available
+  def available
   	where(self.events.now.blank?)
   end
 
