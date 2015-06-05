@@ -1,5 +1,7 @@
 class Building < ActiveRecord::Base
   reverse_geocoded_by :lat, :lng
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
   
+
+
 end

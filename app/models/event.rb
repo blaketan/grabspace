@@ -1,5 +1,19 @@
 class Event < ActiveRecord::Base
   belongs_to :room
-  scope :today, -> {where("start_time >= ?", Time.zone.now.beginning_of_day)}
-  scope :now, -> {where("start_time <= ? AND end_time >= ?", Time.zone.now, Time.zone.now)} 
+
+  def self.now
+  	at(Time.zone.now)
+  end
+
+  def self.at(time)
+  	where("start_time <= ? AND end_time >= ?", time, time)} 
+  end
+
+  def self.today
+  	on(Time.zone.now)
+  end
+
+  def self.on(day)
+  	where("start_time >= ?", day.beginning_of_day)
+  end
 end
