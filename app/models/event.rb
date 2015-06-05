@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.at(time)
-  	where("start_time <= ? AND end_time >= ?", time, time)} 
+  	where("start_time <= ? AND end_time >= ?", time, time)
   end
 
   def self.today
