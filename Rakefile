@@ -57,8 +57,8 @@ namespace :astra do
       end
       Event.create([
         {
-          "start_time"=>event[3],
-          "end_time"=>event[4],
+          "start_time"=>event[3].to_time,
+          "end_time"=>event[4].to_time,
           "room_id"=>rm[:id],
         }
       ])
