@@ -42,7 +42,7 @@ private
   end
 
   def find_next_time(time)
-  	@next_time = time.beginning_of_day + 2200
+  	@next_time = time.beginning_of_day + 22*60*60
   	if self.available? # room is available until the start time of first event after current time
   	  @events = self.events.on(time).where("start_time >= ?", time).order('start_time')
   	  if @events.empty? #room is available until the end of the day
