@@ -21,7 +21,7 @@ class Room < ActiveRecord::Base
   end
 
   def self.building_closed?(time = Time.zone.now)
-  	 return (time<time.beginning_of_day+7*60*60) or (time > time.beginning_of_day+22*60*60) or time.saturday? or time.sunday?
+  	(time < time.beginning_of_day+7*60*60) or (time >= time.beginning_of_day+22*60*60) or time.saturday? or time.sunday?
   end
 
   def next_timing(time = Time.zone.now)
