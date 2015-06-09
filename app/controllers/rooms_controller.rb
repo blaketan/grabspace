@@ -3,6 +3,6 @@ class RoomsController < ApplicationController
 	def show
 		@room = Room.find(params[:id])
 		@events = @room.events.sort
-		@available = rm_avail(@room.id)
+		@available = [@room.available?,@room.next_timing]
 	end
 end
