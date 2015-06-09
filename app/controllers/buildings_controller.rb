@@ -7,6 +7,7 @@ class BuildingsController < ApplicationController
     else
       @buildings = Building.all  
     end
+    @buildings = @buildings.includes(:rooms)
   end
 
   def show
