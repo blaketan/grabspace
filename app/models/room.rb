@@ -45,10 +45,10 @@ private
   	@next_time = time.beginning_of_day + 2200
   	if self.available? # room is available until the start time of first event after current time
   	  @events = self.events.on(time).where("start_time >= ?", time).order('start_time')
-  	  unless @events.empty? #room is available until the end of the day
-  		return @next_time
+  	  if @events.empty? #room is available until the end of the day
+  		  return @next_time
       else 
-  		return @events.first[:start_time]
+  		  return @events.first[:start_time]
   	  end
   	else #room is available after the current event
   	  return self.events.now.first[:end_time]
