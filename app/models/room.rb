@@ -17,7 +17,7 @@ class Room < ActiveRecord::Base
   end
 
   def available?(time = Time.zone.now)
-  	Room.building_closed?(time) and self.events.at(time).empty?
+  	!Room.building_closed?(time) and self.events.at(time).empty?
   end
 
   def self.building_closed?(time = Time.zone.now)
