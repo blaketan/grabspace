@@ -17,12 +17,12 @@
  
 
   <% @rooms.each do |room| %>
-  <%= link to building_room_path(@hall,room) do %>
+  <%= link_to building_room_path(@hall,room) do %>
   <div class="panel panel-default">
     <div class="panel-body">
     <center>
   	<%= room.name %>
-	<%= room.capacity %> seats
+	  <%= room.capacity %> seats
   	<% if room.available? %>
   		Room is available until <%= room.next_timing %>
   	<% else %>
