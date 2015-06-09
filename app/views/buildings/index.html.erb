@@ -28,7 +28,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <strong><%= building.name %></strong>
-      <span class="badge" id="availability"><%= availcount(building.id) %></span>
+      <span class="badge" id="availability"><%= building.rooms_available %></span>
       &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;rooms available
       <% if @lat_lng %>
         <%= compass(building, @lat_lng)%>

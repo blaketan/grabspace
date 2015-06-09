@@ -3,7 +3,7 @@ class Building < ActiveRecord::Base
   has_many :rooms, dependent: :destroy
 
   def rooms_available
-    return self.rooms.available
+    return self.rooms.available.count
   end
 
 
