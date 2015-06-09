@@ -22,10 +22,10 @@
     <center>
   	<%= link_to room.name, building_room_path(@hall,room) %>
 	<%= room.capacity %> seats
-  	<% if rm_free(room.id)[0] == true %>
-  		Room is available until <%= rm_free(room.id)[1] %>
+  	<% if room.available? %>
+  		Room is available until <%= room.next_timing %>
   	<% else %>
-  		Room closed until <%= rm_free(room.id)[1] %>
+  		Room closed until <%= room.next_timing %>
   	<% end %>
   	</center>
   	</div>
