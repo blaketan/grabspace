@@ -23,7 +23,7 @@
     <center>
   	<%= room.name %>
     <span class="badge"><%= room.capacity %></span>
-      &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;Seats
+      &nbsp; &nbsp; Seats
   	<% if room.available? %>
   		Room is available until <%= room.next_timing %>
   	<% else %>
