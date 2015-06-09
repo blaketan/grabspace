@@ -14,8 +14,8 @@
    <div id="map-canvas"/>
 </div>
 <p align="center">
-  <strong>Room: <% @room.name %> </strong>
-   <% @room.name %> - <%= @hall.name %> 
+  <strong>Room: </strong>
+   <%= @room.name %> - <%= @hall.name %> 
 </p>
 
 <div class="panel panel-default">
@@ -32,7 +32,7 @@
     <center>
 	  Capacity : <%= @room.capacity %> seats
 	<div class="well well-sm">
-	  Events : <% @events %>
+	  Events : <%= @events %>
 	</div>
   	</center>
   </div>
