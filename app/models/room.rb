@@ -36,8 +36,10 @@ private
   def next_start_time(time)
   	if time.friday? or time.sunday? or time.saturday?
   	  return time.next_week + 7*60*60
-  	else
+  	elsif time.hours >=22
       return time.beginning_of_day + 31*60*60
+    else
+      return time.beginning_of_day + 7*60*60
   	end
   end
 

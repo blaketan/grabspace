@@ -1,8 +1,4 @@
-<title> Grabspace </title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<div id="topnav">
-<p id="navtext">Grabspace</p>
-</div>
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&sensor=true">
 </script>
 
@@ -23,7 +19,7 @@
     <center>
   	<%= room.name %>
     <span class="badge"><%= room.capacity %></span>
-      &nbsp; &nbsp; Seats
+      &nbsp; Seats
   	<% if room.available? %>
   		Room is available until <%= room.next_timing %>
   	<% else %>
