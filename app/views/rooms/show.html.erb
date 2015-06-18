@@ -32,22 +32,20 @@
   </div>
 </div>
 
-<script type="text/javascript" data-turbolinks-eval="false">
-      function initialize() {
-       
-      var myLatlng = new google.maps.LatLng(<%= @hall.lat %>,<%= @hall.lng %>);
-      var mapOptions = {
+<script type="text/javascript">
+  var ready;
+  ready = function(){
+    var myLatlng = new google.maps.LatLng(<%= @hall.lat %>,<%= @hall.lng %>);
+    var mapOptions = {
       zoom: 17,
       center: myLatlng
-      }
-      var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-      var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-      });
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
-    google.maps.event.addDomListener(window, 'page:load', initialize);
-
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+    });
+  };
+  $(document).ready(ready);
+  $(document).on('page:load',ready);
 </script>

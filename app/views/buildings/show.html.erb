@@ -12,41 +12,22 @@
 </p>
  
 
-  <% @rooms.each do |room| %>
-  <%= link_to building_room_path(@hall,room) do %>
-  <div class="panel panel-default">
-    <div class="panel-body">
-    <center>
-  	<%= room.name %>
-    <span class="badge"><%= room.capacity %></span>
-      &nbsp; Seats
-  	<% if room.available? %>
-  		Room is available until <%= room.next_timing %>
-  	<% else %>
-  		Room closed until <%= room.next_timing %>
-  	<% end %>
-  	</center>
-  	</div>
-  </div>
-  <% end %>
-  <% end %>
+<%= render partial: "room", collection: @rooms, locals: {hall: @hall} %>
 
-<script type="text/javascript" data-turbolinks-eval="false">
-      function initialize() {
-       
-      var myLatlng = new google.maps.LatLng(<%= @hall.lat %>,<%= @hall.lng %>);
-      var mapOptions = {
+<script type="text/javascript">
+  var ready;
+  ready = function() {
+    var myLatlng = new google.maps.LatLng(<%= @hall.lat %>,<%= @hall.lng %>);
+    var mapOptions = {
       zoom: 17,
       center: myLatlng
-      }
-      var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-      var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-      });
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-    google.maps.event.addDomListener(window, 'page:load', initialize);
-
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+    });
+  };
+  $(document).ready(ready);
+  $(document).on('page:change', ready);
 </script>

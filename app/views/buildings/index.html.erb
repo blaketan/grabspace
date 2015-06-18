@@ -15,26 +15,11 @@
       getGeoLocation();
     </script>
     <% else %>
-      <p>Displaying buildings closest to you</p>
+      <p>Displaying buildings closest to you within 20 miles</p>
   <%- end %>
 
 
-<% @buildings.each do |building| %>
-  <%= link_to building_path(building) do %>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <strong><%= building.name %></strong>
-      <span class="badge" id="availability"><%= building.rooms_available %></span>
-      &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;rooms available
-      <% if @lat_lng %>
-        <%= compass(building, @lat_lng)%>
-        <%= building.distance_from(@lat_lng).round(2) %> mi
-      <% end %>
-
-    </div>
-  </div>
-  <% end %>
-<% end %>
+<%= render partial: "building", collection: @buildings, locals: {lat_lng: @lat_lng}%>
 
 <%= @lat_lng %>
 <%= Time.now.strftime("%k%M zone %z") %>
