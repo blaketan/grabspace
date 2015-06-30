@@ -17,3 +17,5 @@
 
 # Ignore localy bundled gems
 /vendor/bundle
+
+/config/initializers/environment_variables.rb
