@@ -5,7 +5,7 @@ gem 'rails', '4.0.2'
 
 gem 'ruby-oci8', '~> 2.1.0'
 gem 'activerecord-oracle_enhanced-adapter', '~> 1.5.0'
-
+gem 'sqlite3', '~> 1.3.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
