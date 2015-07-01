@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150423221141) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "buildings", force: true do |t|
     t.string   "name"
     t.float    "lat"
@@ -32,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150423221141) do
     t.datetime "end_time"
   end
 
-  add_index "events", ["room_id"], name: "index_events_on_room_id", using: :btree
+  add_index "events", ["room_id"], name: "index_events_on_room_id"
 
   create_table "rooms", force: true do |t|
     t.string   "name"
@@ -42,6 +39,6 @@ ActiveRecord::Schema.define(version: 20150423221141) do
     t.datetime "updated_at"
   end
 
-  add_index "rooms", ["building_id"], name: "index_rooms_on_building_id", using: :btree
+  add_index "rooms", ["building_id"], name: "index_rooms_on_building_id"
 
 end
