@@ -1,0 +1,19 @@
+AllCops:
+  Exclude:
+    - '**/*.gemspec'
+    - '**/bin/**/*'
+    - '**/spec/spec_helper.rb'
+    - '**/bundle/**/*'
+    - '**/vendor/bundle/**/*'
+
+Documentation:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  MaxLineLength: 0
+
+StringLiterals:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
