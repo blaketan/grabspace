@@ -32,6 +32,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+  gem 'rspec', '~> 3'
+  gem 'rspec-rails', '~> 3'
+end
+
 gem 'json'
 
 gem 'geocoder'
