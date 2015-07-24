@@ -1,0 +1,5 @@
+# GrabSpace
+
+## Testing
+
+- `./bin/rspec`
