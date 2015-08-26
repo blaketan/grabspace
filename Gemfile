@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.13'
+gem 'rails', '4.2.3'
 
 gem 'ruby-oci8', '~> 2.1.0'
 gem 'activerecord-oracle_enhanced-adapter', '~> 1.5.0'
@@ -56,4 +56,3 @@ gem 'geocoder'
 
 gem 'mechanize'
 
-ruby "2.1.5"
