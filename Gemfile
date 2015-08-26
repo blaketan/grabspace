@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.4'
 
-gem 'ruby-oci8', '~> 2.1.0'
-gem 'activerecord-oracle_enhanced-adapter', '~> 1.5.0'
+gem 'ruby-oci8', '~> 2.1.8'
+gem 'activerecord-oracle_enhanced-adapter', '~> 1.6.0'
 gem 'sqlite3', '~> 1.3.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
