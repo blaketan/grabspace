@@ -13,7 +13,7 @@ namespace :astra do
   desc "Extract events from Astra Schedule"
     task :nightly => :environment do 
     Event.destroy_all(['created_at < ?',3.days.ago])
-    astra_root = "***REMOVED***"
+    astra_root = ENV['ASTRA_ROOT']
     username = ENV['ASTRA_ID']
     ***REMOVED*** = ENV['ASTRA_PASS']
 
@@ -47,21 +47,21 @@ namespace :astra do
     room_events["data"].each do |event|
       rm= Room.find_by building_id: event[1], name: event[2]
       if rm.nil?
-        rm=Room.create([
+        rm=Room.create(
           {
             "name"=>event[2],
             "capacity"=>event[5].to_i,
             "building_id"=>event[1].to_i
           }
-        ])
+        )
       end
-      Event.create([
+      Event.create(
         {
           "start_time"=>event[3].to_time,
           "end_time"=>event[4].to_time,
-          "room_id"=>rm[:id],
+          "room_id"=>rm[:id]
         }
-      ])
+      )
     end
   end
 end
