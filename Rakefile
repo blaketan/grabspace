@@ -13,9 +13,9 @@ namespace :astra do
   desc "Extract events from Astra Schedule"
     task :nightly => :environment do 
     Event.destroy_all(['created_at < ?',3.days.ago])
-    astra_root = "***REMOVED***"
+    astra_root = ENV['ASTRA_ROOT']
     username = ENV['ASTRA_ID']
-    ***REMOVED*** = ENV['ASTRA_PASS']
+    password = ENV['ASTRA_PASS']
 
     params = {}
     params[:fields] = "Location.Room.Building.Name,BuildingCode,RoomNumber,StartDateTime,EndDateTime,Location.MeetingCapacity"
@@ -38,7 +38,7 @@ namespace :astra do
 
     agent = Mechanize.new
     # Authenticate with Astra Calendar API
-    agent.post("#{astra_root}Logon.ashx", "{\"username\": \"#{username}\",\"***REMOVED***\": \"#{***REMOVED***}\"}", 'Content-Type' => 'application/json')
+    agent.post("#{astra_root}Logon.ashx", "{\"username\": \"#{username}\",\"password\": \"#{password}\"}", 'Content-Type' => 'application/json')
     # Query Astra Calendar room events
     response_body = agent.get("#{astra_root}~api/calendar/calendarList", params).body
 
@@ -47,21 +47,21 @@ namespace :astra do
     room_events["data"].each do |event|
       rm= Room.find_by building_id: event[1], name: event[2]
       if rm.nil?
-        rm=Room.create([
+        rm=Room.create(
           {
             "name"=>event[2],
             "capacity"=>event[5].to_i,
             "building_id"=>event[1].to_i
           }
-        ])
+        )
       end
-      Event.create([
+      Event.create(
         {
           "start_time"=>event[3].to_time,
           "end_time"=>event[4].to_time,
-          "room_id"=>rm[:id],
+          "room_id"=>rm[:id]
         }
-      ])
+      )
     end
   end
 end

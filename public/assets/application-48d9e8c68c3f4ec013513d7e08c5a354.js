@@ -2009,7 +2009,7 @@ Expr = Sizzle.selectors = {
 Expr.pseudos["nth"] = Expr.pseudos["eq"];
 
 // Add button/input type pseudos
-for ( i in { radio: true, checkbox: true, file: true, ***REMOVED***: true, image: true } ) {
+for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
 	Expr.pseudos[ i ] = createInputPseudo( i );
 }
 for ( i in { submit: true, reset: true } ) {
@@ -8876,7 +8876,7 @@ jQuery.extend({
 		data: null,
 		dataType: null,
 		username: null,
-		***REMOVED***: null,
+		password: null,
 		cache: null,
 		throws: false,
 		traditional: false,
@@ -9625,7 +9625,7 @@ if ( xhrSupported ) {
 						id = ++xhrId;
 
 					// Open the socket
-					xhr.open( options.type, options.url, options.async, options.username, options.***REMOVED*** );
+					xhr.open( options.type, options.url, options.async, options.username, options.password );
 
 					// Apply custom fields if provided
 					if ( options.xhrFields ) {

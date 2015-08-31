@@ -33,6 +33,7 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'  #set environment variables in .env file for dev and test.
   gem 'rspec', '~> 3'
   gem 'rspec-rails', '~> 3'
   gem 'rubocop', '~> 0.32.0'
@@ -42,7 +43,7 @@ gem 'json'
 
 gem 'geocoder'
 
-# Use ActiveModel has_secure_***REMOVED***
+# Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
