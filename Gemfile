@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.13'
+gem 'rails', '4.2.4'
 
-gem 'ruby-oci8', '~> 2.1.0'
-gem 'activerecord-oracle_enhanced-adapter', '~> 1.5.0'
+gem 'ruby-oci8', '~> 2.1.8'
+gem 'activerecord-oracle_enhanced-adapter', '~> 1.6.0'
 gem 'sqlite3', '~> 1.3.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -43,7 +43,7 @@ gem 'json'
 
 gem 'geocoder'
 
-# Use ActiveModel has_secure_***REMOVED***
+# Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
@@ -57,4 +57,3 @@ gem 'geocoder'
 
 gem 'mechanize'
 
-ruby "2.1.5"

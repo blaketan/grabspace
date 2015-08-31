@@ -15,7 +15,7 @@ namespace :astra do
     Event.destroy_all(['created_at < ?',3.days.ago])
     astra_root = ENV['ASTRA_ROOT']
     username = ENV['ASTRA_ID']
-    ***REMOVED*** = ENV['ASTRA_PASS']
+    password = ENV['ASTRA_PASS']
 
     params = {}
     params[:fields] = "Location.Room.Building.Name,BuildingCode,RoomNumber,StartDateTime,EndDateTime,Location.MeetingCapacity"
@@ -38,7 +38,7 @@ namespace :astra do
 
     agent = Mechanize.new
     # Authenticate with Astra Calendar API
-    agent.post("#{astra_root}Logon.ashx", "{\"username\": \"#{username}\",\"***REMOVED***\": \"#{***REMOVED***}\"}", 'Content-Type' => 'application/json')
+    agent.post("#{astra_root}Logon.ashx", "{\"username\": \"#{username}\",\"password\": \"#{password}\"}", 'Content-Type' => 'application/json')
     # Query Astra Calendar room events
     response_body = agent.get("#{astra_root}~api/calendar/calendarList", params).body
 
