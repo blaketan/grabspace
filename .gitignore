@@ -7,6 +7,12 @@
 #Ignore local env file(with astra)
 .env
 
+#Ignore json files
+/db/json/*.json
+
+#Ignore database.yml
+/config/database.yml
+
 # Ignore bundler config.
 /.bundle
 
