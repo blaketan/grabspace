@@ -14,6 +14,6 @@ class Event < ActiveRecord::Base
   end
 
   def self.on(day)
-  	where("start_time >= ? AND end_time =< ?", day.beginning_of_day, day.beginning_of_day + 24* 60 * 60)
+  	where("start_time >= ? AND end_time <= ?", day.beginning_of_day, day.beginning_of_day + 24* 60 * 60)
   end
 end

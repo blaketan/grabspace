@@ -32,7 +32,7 @@ RSpec.describe Room, type: :model do
   	end
 
   	it "is not closed" do
-  	  expect(Room.building_closed?).to eq(false)
+  	  expect(Room.building_closed?).to be false
   	end
 
   	it "has one available room" do
