@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rspec', '~> 3'
   gem 'rspec-rails', '~> 3'
   gem 'rubocop', '~> 0.32.0'
+  gem 'timecop'
 end
 
 gem 'json'
