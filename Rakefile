@@ -18,17 +18,17 @@ namespace :astra do
     password = ENV['ASTRA_PASS']
 
     params = {}
-    params[:fields] = "ActivityName,Location.Room.Id,BuildingCode,RoomNumber,StartDateTime,EndDateTime,Location.Room.RoomType.Name"
+    params[:fields] = "Location.Room.Id,BuildingCode,RoomNumber,StartDateTime,EndDateTime,Location.Room.RoomType.Name"
 
     today = Time.now.strftime("%Y-%m-%d")
 
     params[:filter] = ""
     # Filter to only today's scheduled events
-    params[:filter] << "(StartDate>=\"#{today.to_s}T00:00:00\")"
-    params[:filter] << "&&(EndDate<=\"#{today.to_s}T23:59:00\")"
+    params[:filter] << "(StartDate>='#{today.to_s}T00:00:00')"
+    params[:filter] << "&&(EndDate<='#{today.to_s}T23:59:00')"
     # Filter to only General Purpose Classrooms on the Twin Cities campus
-    params[:filter] << "&&(Location.Room.Building.Campus.Name==\"Mpls/StPaul\")"
-    params[:filter] << "&&(Location.Room.RoomType.Name==\"General Purpose Classroom\")"
+    params[:filter] << "&&(Location.Room.Building.Campus.Name=='Mpls/StPaul')"
+    params[:filter] << "&&(Location.Room.RoomType.Name=='General Purpose Classroom')"
     # Filter out potential Astra Schedule soft deletes
     params[:filter] << "&&(Location.IsDeleted!=1)"
     params[:filter] << "&&(Location.Room.IsDeleted!=1)"
