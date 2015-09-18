@@ -20,7 +20,6 @@ set :linked_files,
     fetch(:linked_files, []).push('config/initializers/environment_variables.rb')
 
 set :linked_dirs,
-    fetch(:linked_dirs, []).push('bin',
-                                 'log',
+    fetch(:linked_dirs, []).push('log',
                                  'tmp/cache',
                                  'vendor/bundle')
