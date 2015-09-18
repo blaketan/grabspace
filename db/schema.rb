@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423221141) do
+ActiveRecord::Schema.define(version: 20150918165047) do
 
-  create_table "buildings", force: true do |t|
+  create_table "buildings", force: :cascade do |t|
     t.string   "name"
     t.float    "lat"
     t.float    "lng"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150423221141) do
     t.datetime "updated_at"
   end
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.integer  "room_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -31,12 +31,13 @@ ActiveRecord::Schema.define(version: 20150423221141) do
 
   add_index "events", ["room_id"], name: "index_events_on_room_id"
 
-  create_table "rooms", force: true do |t|
+  create_table "rooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "capacity"
     t.integer  "building_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "guid"
   end
 
   add_index "rooms", ["building_id"], name: "index_rooms_on_building_id"

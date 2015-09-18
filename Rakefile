@@ -18,7 +18,7 @@ namespace :astra do
     password = ENV['ASTRA_PASS']
 
     params = {}
-    params[:fields] = "Location.Room.Id,BuildingCode,RoomNumber,StartDateTime,EndDateTime,Location.Room.RoomType.Name"
+    params[:fields] = "Location.Room.Id,BuildingCode,RoomNumber,StartDateTime,EndDateTime,Location.MeetingCapacity"
 
     today = Time.now.strftime("%Y-%m-%d")
 
@@ -46,29 +46,24 @@ namespace :astra do
     File.open("db/json/events" + today + ".json","w") do |f|
       f.write(response_body)
     end
-=begin
+
     room_events = JSON.parse(response_body)
 
     room_events["data"].each do |event|
-      rm= Room.find_by building_id: event[1], name: event[2]
+      rm= Room.find_by guid: event[0]
       if rm.nil?
-        rm=Room.create(
+        puts "Room #{event[2]} of #{event[1]} not found"
+      else
+        Event.create([
           {
-            "name"=>event[2],
-            "capacity"=>event[5].to_i,
-            "building_id"=>event[1].to_i
+            "start_time"=>event[3].to_time,
+            "end_time"=>event[4].to_time,
+            "room_id"=>rm[:id]
           }
-        )
+      ])
       end
-      Event.create(
-        {
-          "start_time"=>event[3].to_time,
-          "end_time"=>event[4].to_time,
-          "room_id"=>rm[:id]
-        }
-      )
     end
-=end
+
   end
 
   task :make_room_seed => :environment do 
@@ -77,7 +72,7 @@ namespace :astra do
     password = ENV['ASTRA_PASS']
 
     params = {}
-    params[:fields] = "Id,RoomNumber,Building.Name,MaxOccupancy"
+    params[:fields] = "Id,RoomNumber,Building.BuildingCode,Building.Name,MaxOccupancy"
     params[:filter] = ""
 
     # Filter to only General Purpose Classrooms on the Twin Cities campus

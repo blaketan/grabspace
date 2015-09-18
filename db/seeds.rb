@@ -12,9 +12,9 @@ require 'openssl'
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 buildings = JSON.parse(open("db/json/buildings.json").read)
+rooms = JSON.parse(open("db/json/rooms.json").read)
 
 buildings["buildings"].each do |bldg|
-	current_building = bldg["id"]
   Building.create([
     {
       "id"=>bldg["id"], 
@@ -23,5 +23,22 @@ buildings["buildings"].each do |bldg|
       "lng"=>bldg["lng"].to_f,
     }
   ])
-  
 end
+
+rooms["data"].each do |rm|
+  bldg = Building.find_by id: rm[2]
+  if bldg.nil?
+  	puts "Building #{rm[3]} not found"
+  else
+    Room.create([
+	  {
+	    "name"=>rm[1],
+	    "capacity"=>rm[4],
+	    "building_id"=>rm[2].to_i,
+	    "guid"=>rm[0],
+ 	  }
+    ])
+  end
+end
+		
+
