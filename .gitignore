@@ -10,8 +10,7 @@
 #Ignore json files
 /db/json/*.json
 
-#Ignore database.yml
-/config/database.yml
+
 
 # Ignore bundler config.
 /.bundle
