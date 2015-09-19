@@ -17,16 +17,16 @@ test:
 
 exadata_defaults: &exadata_defaults
   adapter: oracle_enhanced
-  host: ENV['ORACLE_STAGING_HOST']
-  username: ENV['ORACLE_GETAROOM_USER']
+  host: <%= ENV['ORACLE_STAGING_HOST'] %>
+  username: <%= ENV['ORACLE_GETAROOM_USER'] %>
 
 staging:
   <<: *exadata_defaults
-  database: ENV['ORACLE_STAGING_DB']
-  password: ENV['ORACLE_STAGING_PASSWORD']
+  database: <%= ENV['ORACLE_STAGING_DB'] %>
+  password: <%= ENV['ORACLE_STAGING_PASSWORD'] %>
 
 production:
   <<: *exadata_defaults
-  host: ENV['ORACLE_PRODUCTION_HOST']
-  database: ENV['ORACLE_PRODUCTION_DB']
-  password: ENV['ORACLE_PRODUCTION_PASSWORD']
+  host: <%= ENV['ORACLE_PRODUCTION_HOST'] =>
+  database: <%= ENV['ORACLE_PRODUCTION_DB'] =>
+  password: <%= ENV['ORACLE_PRODUCTION_PASSWORD'] =>
