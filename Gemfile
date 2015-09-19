@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 
-gem 'ruby-oci8', '~> 2.1.8'
-gem 'activerecord-oracle_enhanced-adapter', '~> 1.6.0'
-gem 'sqlite3', '~> 1.3.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -14,6 +11,9 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+
+gem 'execjs'
+gem 'therubyracer'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -32,11 +32,24 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :staging, :production do
+  gem 'ruby-oci8', '~> 2.1.8'
+  gem 'activerecord-oracle_enhanced-adapter', '~> 1.6.0'
+end
+
 group :development, :test do
+  gem 'sqlite3', '~> 1.3.10'
   gem 'dotenv-rails'  #set environment variables in .env file for dev and test.
   gem 'rspec', '~> 3'
   gem 'rspec-rails', '~> 3'
   gem 'rubocop', '~> 0.32.0'
+end
+
+group :development do
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-bundler', '~> 1.1'
+  gem 'capistrano-passenger', '~> 0.1'
 end
 
 gem 'json'
