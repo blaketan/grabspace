@@ -10,11 +10,11 @@
 #Ignore json files
 /db/json/*.json
 
-#Ignore database.yml
-/config/database.yml
+
 
 # Ignore bundler config.
 /.bundle
+/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
