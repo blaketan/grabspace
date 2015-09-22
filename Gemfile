@@ -56,6 +56,7 @@ end
 gem 'json'
 
 gem 'geocoder'
+gem 'geocoder-oracle'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
