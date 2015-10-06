@@ -18,7 +18,8 @@ set :ssh_options,
 
 set :linked_files,
     fetch(:linked_files, []).push('config/initializers/environment_variables.rb',
-                                  'config/database.yml')
+                                  'config/database.yml',
+                                  'db/json/buildings.json')
 
 set :linked_dirs,
     fetch(:linked_dirs, []).push('log',
