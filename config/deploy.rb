@@ -17,7 +17,8 @@ set :ssh_options,
     auth_methods: %w(publickey)
 
 set :linked_files,
-    fetch(:linked_files, []).push('config/initializers/environment_variables.rb')
+    fetch(:linked_files, []).push('config/initializers/environment_variables.rb',
+                                  'config/database.yml')
 
 set :linked_dirs,
     fetch(:linked_dirs, []).push('log',
