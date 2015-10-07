@@ -28,3 +28,5 @@
 /vendor/bundle
 
 /config/initializers/environment_variables.rb
+
+*database.yml
